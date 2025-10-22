@@ -1,5 +1,6 @@
+/* @refresh reset */
 import { useContext, useEffect, useState } from "react";
-import { children, createContext } from "react";
+import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { dummyProducts } from "../assets/assets";
 import {toast} from 'react-hot-toast';
