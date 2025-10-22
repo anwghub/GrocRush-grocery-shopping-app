@@ -1,4 +1,3 @@
-/* @refresh reset */
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +16,7 @@ export const AppContextProvider = ({children})=>{
     const [showUserLogin, setShowUserLogin]=useState(false);
     const [products, setProducts] = useState([]);
     const [cartItems,setCartItems] = useState({});
+    const [searchQuery,setSearchQuery] = useState("");
 
     //fetch
     const fetchProducts = async ()=>{
@@ -59,7 +59,7 @@ export const AppContextProvider = ({children})=>{
         fetchProducts();
     },[])
 
-    const value={navigate,setIsSeller, setUser,user,isSeller, showUserLogin, setShowUserLogin,products, currency, addToCart, updateCartItem, removeFromCart, cartItems}
+    const value={navigate,setIsSeller, setUser,user,isSeller, showUserLogin, setShowUserLogin,products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery,setSearchQuery}
     return <AppContext.Provider value={value}>
         {children}
     </AppContext.Provider>
