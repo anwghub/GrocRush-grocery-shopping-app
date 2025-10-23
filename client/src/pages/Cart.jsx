@@ -59,7 +59,7 @@ return products.length > 0 && cartItems ? (
                                 <p>Weight: <span>{product.weight || "N/A"}</span></p>
                                 <div className='flex items-center'>
                                     <p>Qty:</p>
-                                    {/* Replace the quantity dropdown select with fixed 10 options and default value handling */}
+                                    
                                     <select onChange={e => updateCartItem(product._id, Number(e.target.value))} value={cartItems[product._id] || 1} className='outline-none'>
                                       {Array(10).fill('').map((_, index) => (
                                         <option key={index} value={index + 1}>{index + 1}</option>
