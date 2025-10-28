@@ -1,5 +1,5 @@
 import Product from "../models/Product.js";
-import express from express;
+import express from 'express';
 import { v2 as cloudinary } from "cloudinary";
 
 //Add product : /api/product/add
