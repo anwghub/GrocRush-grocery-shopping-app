@@ -12,7 +12,7 @@ const SellerLogin = () => {
         //event.preventDefault();
         try {
             event.preventDefault();
-            const { data } = await axios.post('/api/seller/login', { email, password });
+            const { data } = await axios.post('/api/seller/login', { email, password }, { withCredentials: true });
             if (data && data.success) {
                 // update local seller state and optionally re-check auth
                 setIsSeller(true);

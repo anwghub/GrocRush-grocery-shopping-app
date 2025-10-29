@@ -3,7 +3,7 @@ import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { dummyProducts } from "../assets/assets";
 import { toast } from 'react-hot-toast';
-import axios from 'axios';
+import axios from "axios";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
@@ -22,6 +22,18 @@ export const AppContextProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState({});
     const [searchQuery, setSearchQuery] = useState("");
 
+    //fetch user auth status
+    const fetchUser = async ()=>{
+        try {
+            const {data} = await axios.post('/api/user/is-auth');
+            setUser(data.user);
+            setCartItems(data.user.cartItems);
+        } catch (error) {
+            setUser(null);
+        }
+    }
+
+    //fetch seller data
     const fetchSeller = async()=>{
         try{
             const {data} = await axios.get('/api/seller/is-auth');
@@ -109,6 +121,7 @@ export const AppContextProvider = ({ children }) => {
 
 
     useEffect(() => {
+        fetchUser();
         fetchProducts();
         // check if seller is already authenticated (cookie-based)
         fetchSeller();
