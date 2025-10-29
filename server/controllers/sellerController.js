@@ -1,4 +1,6 @@
 import express from 'express';
+import jwt from "jsonwebtoken";
+
 
 ///login seller: /api/seller/login
 
@@ -11,8 +13,10 @@ export const sellerLogin = async (req, res) => {
 
             res.cookie('sellerToken', token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+                secure:false,
+                //secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                //sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', //strict
                 maxAge: 7 * 24 * 60 * 60 * 1000,
             });
 
@@ -27,14 +31,34 @@ export const sellerLogin = async (req, res) => {
 }
 
 // seller isauth: /api/seller/is-auth
+// export const isSellerAuth = async (req, res) => {
+//     try {
+//         return res.json({ success: true, user })
+//     } catch (error) {
+//         console.log(error.message);
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
 export const isSellerAuth = async (req, res) => {
-    try {
-        return res.json({ success: true, user })
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    try { console.log("Cookies received:", req.cookies);
+
+        const token = req.cookies.sellerToken;
+        if (!token) {
+            return res.json({ success: false, message: "No token found" });
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log("decoded token: ", decoded);
+        
+        return res.json({ success: true, user: { email: decoded.email } });
     } catch (error) {
-        console.log(error.message);
-        res.json({ success: false, message: error.message });
+        console.error(error.message);
+        return res.json({ success: false, message: "Not authorized" });
     }
-}
+};
+
 
 // seller logout: /api/seller/logout
 export const sellerLogout = async (req, res) => {
@@ -43,9 +67,9 @@ export const sellerLogout = async (req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-           //path: '/',
+            //path: '/',
         });
-        return res.json({success: true, message:"Logged out"})
+        return res.json({ success: true, message: "Logged out" })
 
     } catch (error) {
         console.log(error.message);

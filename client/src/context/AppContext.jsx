@@ -3,6 +3,10 @@ import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { dummyProducts } from "../assets/assets";
 import { toast } from 'react-hot-toast';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 export const AppContext = createContext();
 
@@ -18,9 +22,31 @@ export const AppContextProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState({});
     const [searchQuery, setSearchQuery] = useState("");
 
+    const fetchSeller = async()=>{
+        try{
+            const {data} = await axios.get('/api/seller/is-auth');
+            if(data.success){
+                setIsSeller(true);
+            }else{
+                setIsSeller(false);
+            }
+        }catch(error){
+            setIsSeller(false);
+        }
+    }
+
     //fetch
     const fetchProducts = async () => {
-        setProducts(dummyProducts)
+        try{
+            const { data } = await axios.get('/api/product/list');
+            if(data.success){
+                setProducts(data.products)
+            }else{
+                toast.error(data.messsage)
+            }
+        } catch(error){
+            toast.error(error.messsage);
+        }
     }
 
     //add product to cart
@@ -82,32 +108,16 @@ export const AppContextProvider = ({ children }) => {
     };
 
 
-    //update card item quantity
-    // const updateCartItem =()=>{
-    //     let cartData = structuredClone(cartItems);
-    //     cartData[itemId]= quantity;
-    //     setCartItems(cartData);
-    //     toast.success("Cart updated");
-    // }
-
-    ///remove product from cart
-    // const removeFromCart = (itemId)=>{
-    //     let cartData = structuredClone(cartItems);
-    //     if(cartData[itemId]){
-    //         cartData[itemId] -=1;
-    //         if(cartData[itemId]===0){
-    //             delete cartData[itemId];
-    //         }
-    //     }
-    // }
-
     useEffect(() => {
         fetchProducts();
+        // check if seller is already authenticated (cookie-based)
+        fetchSeller();
     }, [])
 
-    const value = { navigate, setIsSeller, setUser, user, isSeller, showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount }
+    const value = { navigate, setIsSeller, setUser, user, isSeller, showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount, axios, fetchProducts }
+    //fetchSeller
     return <AppContext.Provider value={value}>
-        {children}
+       { children }
     </AppContext.Provider>
 }
 
