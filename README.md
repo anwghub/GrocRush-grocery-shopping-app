@@ -20,7 +20,7 @@
 
 ## Demo
 
-Live demo (if deployed): [https://groc-rush-frontend.vercel.app](https://groc-rush-frontend.vercel.app)  
+Live demo : [https://groc-rush-frontend.vercel.app](https://groc-rush-frontend.vercel.app)  
 
 ---
 
@@ -60,7 +60,7 @@ Live demo (if deployed): [https://groc-rush-frontend.vercel.app](https://groc-ru
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/groc-rush.git
+git clone (https://github.com/anwghub/GrocRush-grocery-shopping-app.git)
 cd groc-rush
 ```
 2. **Backend**
@@ -74,8 +74,8 @@ cd client
 npm install
 ```
 4. **Setup Environment Variables**
-```bash
 Create a .env file in the backend folder:
+```bash
 
 PORT=4000
 MONGO_URI=your_mongo_connection_string
@@ -159,5 +159,6 @@ Groc-Rush/
 
 ---
 
-## Contributing
-anwghub
+## Contributor
+[anwghub] (https://github.com/anwghub)
+
