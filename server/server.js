@@ -28,7 +28,7 @@ app.post('/stripe', express.raw({ type: 'application/json' }), stripeWebhooks);
 //middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: 'http://localhost:5173', 
+app.use(cors({origin: ['http://localhost:5173','https://groc-rush-frontend.vercel.app'], 
     credentials: true}));
 
 app.get('/', (req,res)=>res.send("API is working...."))
