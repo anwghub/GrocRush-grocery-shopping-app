@@ -1,4 +1,5 @@
-import logo from "./logo.svg";
+import logo from "./grocRush_logo.png";
+import new_logo from "./new_logo.png"
 import search_icon from "./search_icon.svg";
 import remove_icon from "./remove_icon.svg";
 import arrow_right_icon_colored from "./arrow_right_icon_colored.svg";
@@ -71,7 +72,7 @@ import brown_rice_image from "./brown_rice_image.png";
 import barley_image from "./barley_image.png";
 
 export const assets = {
-  logo,
+  logo, new_logo,
   search_icon,
   remove_icon,
   arrow_right_icon_colored,
