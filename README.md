@@ -92,7 +92,7 @@ CLOUDINARY_API_SECRET=your_api_secret
 **Start Backend**
 ```bash
 cd server
-npm run dev
+npm run server
 ```
 **Start Frontend**
 ```bash
@@ -160,6 +160,7 @@ Groc-Rush/
 
 ## Contributor
 anwghub (https://github.com/anwghub)
+
 
 
 
