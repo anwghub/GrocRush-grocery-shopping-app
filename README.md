@@ -60,8 +60,7 @@ Live demo : [https://groc-rush-frontend.vercel.app](https://groc-rush-frontend.v
 1. **Clone the repository**
 
 ```bash
-git clone (https://github.com/anwghub/GrocRush-grocery-shopping-app.git)
-cd groc-rush
+git clone https://github.com/anwghub/GrocRush-grocery-shopping-app.git
 ```
 2. **Backend**
 ```bash
@@ -161,4 +160,5 @@ Groc-Rush/
 
 ## Contributor
 [anwghub] (https://github.com/anwghub)
+
 
