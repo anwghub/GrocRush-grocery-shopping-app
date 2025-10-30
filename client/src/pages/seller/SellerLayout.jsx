@@ -17,7 +17,7 @@ const SellerLayout = () => {
 
     const logout = async () => {
         try{
-            const { data } = await axios.post('/api/seller/logout');
+            const { data } = await axios.get('/api/seller/logout');
             if(data.success){
                 toast.success(data.message);
                 navigate("/")
@@ -37,7 +37,7 @@ const SellerLayout = () => {
                 </Link>
                 <div className="flex items-center gap-5 text-gray-500">
                     <p>Hi! Admin</p>
-                    <button onClick={logout} className='border rounded-full text-sm px-4 py-1'>Logout</button>
+                    <button onClick={logout} className='border rounded-full text-sm px-4 py-1 cursor-pointer'>Logout</button>
                 </div>
             </div>
             <div className='flex w-full'>

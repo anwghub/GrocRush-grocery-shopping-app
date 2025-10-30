@@ -4,7 +4,7 @@ const authSeller = async (req, res, next) => {
     const sellerToken = req.cookies.sellerToken;
 
     if (!sellerToken) {
-        res.json({ success: false, message: 'No token found' });
+        return res.json({ success: false, message: 'No token found' });
     }
 
     try {
