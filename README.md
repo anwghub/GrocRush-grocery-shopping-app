@@ -1,6 +1,6 @@
 ﻿# GrocRush-grocery-shopping-app
 
-# Groc-Rush 🚀
+# Groc-Rush 
 **Groc-Rush** is a fast, reliable grocery delivery app designed to bring fresh groceries to your doorstep at lightning speed. Shop easily, choose your favorite products, and get them delivered with just a few clicks.
 
 ---
@@ -14,7 +14,7 @@
 - [Usage](#usage)  
 - [API Endpoints](#api-endpoints)  
 - [Folder Structure](#folder-structure)  
-- [Contributing](#contributing)   
+- [Contributor](#contributor)   
 
 ---
 
@@ -160,6 +160,7 @@ Groc-Rush/
 
 ## Contributor
 anwghub (https://github.com/anwghub)
+
 
 
 
