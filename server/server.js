@@ -24,14 +24,20 @@ await connectCloudinary();
 //const allowedOrigins = ['http://localhost:5173']
 
 
-app.post('/stripe', express.raw({ type: 'application/json' }), stripeWebhooks);
+
 //middleware
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://groc-rush-frontend.vercel.app'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: ['http://localhost:5173','https://groc-rush-frontend.vercel.app'], 
-    credentials: true}));
 
-app.get('/', (req,res)=>res.send("API is working...."))
+
+app.post('/stripe', express.raw({ type: 'application/json' }), stripeWebhooks);
+
+
+app.get('/', (req, res) => res.send("API is working...."))
 app.use('/api/user', userRouter);
 app.use('/api/seller', sellerRouter);
 app.use('/api/product', productRouter);
@@ -39,7 +45,7 @@ app.use('/api/cart', cartRouter);
 app.use('/api/address', addressRouter);
 app.use('/api/order', orderRouter);
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-    
+
 });
